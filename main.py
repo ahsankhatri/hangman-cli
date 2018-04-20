@@ -1,3 +1,4 @@
+import random
 import time
 
 def askForLetter():
@@ -17,6 +18,10 @@ def printGuessWord(letter):
 
     return " ".join(guessWord)
 
+def random_line(fname):
+    lines = open(fname).read().splitlines()
+    return random.choice(lines)
+
 def startTime():
     global startedTime
 
@@ -24,7 +29,7 @@ def startTime():
         startedTime = time.time()
 
 if __name__=="__main__":
-    word           = list("hangman".upper())
+    word           = list(random_line('dictionary.txt').upper())
     guessWord      = ['_'] * len(word)
     attempts       = startedTime = 0
     alreadyGuessed = []

@@ -1,10 +1,10 @@
-# Overview
+# Overview (Hangman)
 
-A CLI based word guessing game where you need to guess the word to win the game.
+A CLI based word guessing game where you need to guess the word to win the game. More features will be added whenever i get time.
 
 ### Why this?
 
-Yet another learning program created under 35 minutes including the help of google and SA
+This is an attempt of [Exercise #31](http://www.practicepython.org/exercise/2017/01/02/31-guess-letters.html) from my learning of pythong language. This program actually took 35 minutes to code including the help of [Google](https://www.google.com.pk) and [StackOverflow](https://stackoverflow.com/) (also practicing for Markdown syntaxes)
 
 # Usage
 
