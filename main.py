@@ -1,5 +1,4 @@
-import random
-import time
+import random, time, math
 
 def askForLetter():
     userInput = raw_input("\n>>> Guess your letter: ").upper()
@@ -29,12 +28,15 @@ def startTime():
         startedTime = time.time()
 
 if __name__=="__main__":
-    word           = list(random_line('dictionary.txt').upper())
-    guessWord      = ['_'] * len(word)
-    attempts       = startedTime = 0
-    alreadyGuessed = []
+    word            = list(random_line('dictionary.txt').upper())
+    attemptsAllowed = 4 + int(math.floor(math.log(len(word),2))) * 2
+    guessWord       = ['_'] * len(word)
+    attempts        = startedTime = invalidGuess = 0
+    alreadyGuessed  = []
 
-    print ">>> Welcome to Hangman! Try to guess the word with minimum attempts."
+    # print word # For debugging purpose
+
+    print ">>> Welcome to Hangman! Try to guess the word with", (attemptsAllowed if attemptsAllowed else "minimum"), "attempts."
     print " ", "_ " * len(word)
 
     while word != guessWord:
@@ -53,10 +55,21 @@ if __name__=="__main__":
         attempts += 1
         alreadyGuessed.append(letter)
 
+        # Quit game if attempts limit exceed
+        if letter not in word and attemptsAllowed and (invalidGuess+1) >= attemptsAllowed:
+            print "Sorry! You lost the game. The word was\n ", " ".join(word), "\n\nBetter luck next time!"
+            exit(-1)
+
         # Incorrect intimation
         try:
             if letter not in word:
-                print "Incorrect!"
+                invalidGuess += 1
+
+                if attemptsAllowed:
+                    print "Incorrect! You've", attemptsAllowed - invalidGuess, "attempts left"
+                else:
+                    print "Incorrect!"
+
                 continue
         except Exception:
             pass

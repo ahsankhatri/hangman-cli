@@ -14,5 +14,9 @@ python main.py
 
 # Changelog
 
+## 1.1
+ - Added attempts limit to quit game if exceeded
+ - Improvised algorithm to allow maximum attempts as per complexity of word.
+
 ## 1.0
  - Initial release.
